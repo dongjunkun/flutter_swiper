@@ -86,15 +86,19 @@ class RectSwiperPaginationBuilder extends SwiperPlugin {
   /// Space between rects
   final double space;
 
+  // radius corner
+  final double cornerRadius;
+
   final Key key;
 
   const RectSwiperPaginationBuilder(
       {this.activeColor,
       this.color,
       this.key,
-      this.size: const Size(10.0, 2.0),
-      this.activeSize: const Size(10.0, 2.0),
-      this.space: 3.0});
+      this.size: const Size(20.0, 4.0),
+      this.activeSize: const Size(20.0, 4.0),
+      this.space: 3.0,
+      this.cornerRadius:2.0});
 
   @override
   Widget build(BuildContext context, SwiperPluginConfig config) {
@@ -117,9 +121,13 @@ class RectSwiperPaginationBuilder extends SwiperPlugin {
       Size size = active ? this.activeSize : this.size;
       list.add(
         Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.all(Radius.circular(cornerRadius)),
+            color: active ? activeColor : color,
+          ),
           width: size.width,
           height: size.height,
-          color: active ? activeColor : color,
+          
           key: Key("pagination_$i"),
           margin: EdgeInsets.all(space),
         ),
